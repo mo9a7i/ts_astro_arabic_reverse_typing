@@ -1,0 +1,277 @@
+---
+
+---
+
+<div class="input-fields text-black">
+    <div class="input-text-area">
+        <textarea id="input" rows="4" cols="50"></textarea>
+    </div>
+    <div class="copy-text-area mb-10">
+        <textarea id="copy" rows="4" cols="50" readonly></textarea>
+    </div>
+	<p class="text-white text-center">اضغط على الزر لنسخ النص</p>
+	<button onclick="copyToClipboard()" class="bg-green-500 text-white w-full rounded-md py-2 ">نسخ</button>
+</div>
+
+<script>
+	// add space and all white spaces characters to the range
+	const ISOLATED = 0;
+	const FINAL = 1;
+	const INITIAL = 2;
+	const MEDIAL = 3;
+	const NONE = 0;
+	const BEFORE = 1;
+	const DUAL = 2;
+	const CAUSING = 3;
+	const LAM_CHAR = '\u0644';
+	const LINK_MAP_RANGE = [1569, 1610];
+	const LINK_MAP = [
+		'\uFE80', '\uFE81', '\uFE83', '\uFE85', '\uFE87', '\uFE89', '\uFE8D', '\uFE8F', '\uFE93', '\uFE95', 
+		'\uFE99', '\uFE9D', '\uFEA1', '\uFEA5', '\uFEA9', '\uFEAB', '\uFEAD', '\uFEAF', '\uFEB1', '\uFEB5', 
+		'\uFEB9', '\uFEBD', '\uFEC1', '\uFEC5', '\uFEC9', '\uFECD', '\uFED1', '\uFED5', '\uFED9', '\uFEDD', 
+		'\uFEE1', '\uFEE5', '\uFEE9', '\uFEED', '\uFEEF', '\uFEF1', '\uFEF4', '\uFEF5', '\uFEF7', '\uFEF9', 
+		'\uFEFB', '\uFEFC'
+	];
+	const UNLINK_MAP_RANGE = [1569, 1610];
+	const UNLINK_MAP = [
+		'\u0621', '\u0622', '\u0623', '\u0624', '\u0625', '\u0626', '\u0627', '\u0628', '\u0629', '\u062A', 
+		'\u062B', '\u062C', '\u062D', '\u062E', '\u062F', '\u0630', '\u0631', '\u0632', '\u0633', '\u0634', 
+		'\u0635', '\u0636', '\u0637', '\u0638', '\u0639', '\u063A', '\u0641', '\u0642', '\u0643', '\u0644', 
+		'\u0645', '\u0646', '\u0647', '\u0648', '\u0649', '\u064A'
+	];
+	const LAMALEF_LINK_MAP_RANGE = [65269, 65271];
+	const LAMALEF_LINK_MAP = [
+		'\uFE80', '\uFE81', '\uFE83', '\uFE85', '\uFE87', '\uFE89'
+	];
+	const LAMALEF_UNLINK_MAP_RANGE = [65269, 65271];
+	const LAMALEF_UNLINK_MAP = [
+		'\uFE80', '\uFE81', '\uFE83', '\uFE85', '\uFE87', '\uFE89'
+	];
+	const CHAR_LINK_TYPE = [
+		NONE, BEFORE, BEFORE, BEFORE, BEFORE, DUAL, BEFORE, DUAL, BEFORE, DUAL, DUAL, DUAL, DUAL, DUAL, BEFORE, 
+		BEFORE, BEFORE, BEFORE, DUAL, DUAL, DUAL, DUAL, DUAL, DUAL, DUAL, DUAL, NONE, NONE, NONE, NONE, NONE, 
+		CAUSING, DUAL, DUAL, DUAL, DUAL, DUAL, DUAL, DUAL, BEFORE, DUAL, DUAL
+	];
+
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const input = document.getElementById("input") as HTMLTextAreaElement;
+        // Detect input changes
+        input.addEventListener("input", inputChanged);
+        // add event listener to button click
+        const button = document.querySelector("button");
+        button.addEventListener("click", copyToClipboard);
+    });
+
+    const copyToClipboard = async () => {
+        // check if field is empty
+        const input = document.getElementById("input") as HTMLTextAreaElement;
+        if (input.value === "") {
+            alert("الرجاء كتابة شيء قبل النسخ");
+            return;
+        }
+
+        const copyText = document.getElementById("copy") as HTMLTextAreaElement;
+        try {
+            await navigator.clipboard.writeText(copyText.value);
+            alert("تم النسخ");
+        } catch (err) {
+            console.error("Failed to copy text: ", err);
+        }
+    };
+
+    const reverseInput = (input: string): string => {
+        return input.split("").reverse().join("");
+    };
+
+    const inputChanged = (event: Event) => {
+		// if typed letter is not from LINK_MAP_RANGE delete it and return
+        const input = event.target as HTMLTextAreaElement;
+		const lastChar = input.value[input.value.length - 1];
+		if (lastChar.charCodeAt(0) < LINK_MAP_RANGE[0] || lastChar.charCodeAt(0) > LINK_MAP_RANGE[1]) {
+			input.value = input.value.slice(0, -1);
+			return;
+		}
+
+        const copy = document.getElementById("copy") as HTMLTextAreaElement;
+        // Reverse the input text and set it to the copy text area
+        copy.value = reverseInput(input.value);
+    };
+
+
+
+	function isAlefCharacter(char) {
+		return (char == '\u0621' || char == '\u0622' || char == '\u0623' || char == '\u0624');
+	}
+
+	function isLamCharacter(char) {
+		return (char == LAM_CHAR);
+	}
+
+	function isLamAlefCharacter(char) {
+		return (char >= '\uFEF5' && char <= '\uFEFC');
+	}
+
+	function isTransparentCharacter(char) {
+		return (char >= '\u065E' && char <= '\u065F');
+	}
+
+	function isInLinkRange(char) {
+		return (char >= LINK_MAP_RANGE[0] && char <= LINK_MAP_RANGE[1]);
+	}
+
+	function isInUnlinkRange(char) {
+		return (char >= UNLINK_MAP_RANGE[0] && char <= UNLINK_MAP_RANGE[1]) || isLamAlefCharacter(char);
+	}
+
+	function isLinkableBefore(char) {
+		if (!isInLinkRange(char)) {
+			return false;
+		}
+		var charType = CHAR_LINK_TYPE[char.charCodeAt(0) - LINK_MAP_RANGE[0]];
+		return (charType == BEFORE || charType == DUAL || charType == CAUSING);
+	}
+
+	function isLinkableAfter(char) {
+		if (!isInLinkRange(char)) {
+			return false;
+		}
+		var charType = CHAR_LINK_TYPE[char.charCodeAt(0) - LINK_MAP_RANGE[0]];
+		return (charType == DUAL || charType == CAUSING);
+	}
+
+	function getCharacterLinkType(char) {
+		if (!isInLinkRange(char)) {
+			return NONE;
+		}
+		var charIndex = char.charCodeAt(0) - LINK_MAP_RANGE[0];
+		return CHAR_LINK_TYPE[charIndex];
+	}
+
+	function linkCharacter(char, linkType) {
+		if (!isInLinkRange(char)) {
+			return char;
+		}
+		var charIndex = char.charCodeAt(0) - LINK_MAP_RANGE[0];
+		switch (CHAR_LINK_TYPE[charIndex]) {
+			case BEFORE:
+				return String.fromCharCode(LINK_MAP[charIndex].charCodeAt(0) + (linkType % 2));
+			case DUAL:
+				return String.fromCharCode(LINK_MAP[charIndex].charCodeAt(0) + linkType);
+			case NONE:
+				return String.fromCharCode(LINK_MAP[charIndex].charCodeAt(0));
+			case CAUSING:
+			default:
+				return char;
+		}
+	}
+
+	function linkLamAlefCharacter(char, linkType) {
+		if (!isAlefCharacter(char)) {
+			return char;
+		}
+		var charIndex = char.charCodeAt(0) - LAMALEF_LINK_MAP_RANGE[0];
+		return String.fromCharCode(LAMALEF_LINK_MAP[charIndex].charCodeAt(0) + (linkType % 2));
+	}
+
+	function unlinkCharacter(char) {
+		if (!isInUnlinkRange(char)) {
+			return char;
+		}
+		var charIndex = char.charCodeAt(0) - UNLINK_MAP_RANGE[0];
+		return UNLINK_MAP[charIndex];
+	}
+
+	function unlinkLamAlefCharacter(char) {
+		if (!isLamAlefCharacter(char)) {
+			return char;
+		}
+		var charIndex = char.charCodeAt(0) - LAMALEF_UNLINK_MAP_RANGE[0];
+		return LAMALEF_UNLINK_MAP[charIndex];
+	}
+
+	function internalLinkText(text) {
+		var linkType;
+		var currentLinkType = ISOLATED;
+		var shiftCount = 0;
+
+		for (var i = 0; i < text.length; i++) {
+			var char = text[i];
+
+			if (getCharacterLinkType(char) == CAUSING) {
+				text[i - shiftCount] = char;
+				currentLinkType = MEDIAL;
+				continue;
+			}
+
+			var nextIndex = i + 1;
+			while (nextIndex < text.length - 1 && isTransparentCharacter(text[nextIndex])) {
+				nextIndex++;
+			}
+
+			linkType = (currentLinkType == INITIAL || currentLinkType == MEDIAL) ? FINAL : ISOLATED;
+
+			if (nextIndex < text.length) {
+				if (isLamCharacter(char) && isAlefCharacter(text[nextIndex])) {
+					text[i - shiftCount] = linkLamAlefCharacter(text[nextIndex], linkType);
+					currentLinkType = linkType;
+					shiftCount += nextIndex - i;
+					i = nextIndex;
+					continue;
+				}
+
+				if (isLinkableAfter(char) && isLinkableBefore(text[nextIndex])) {
+					linkType |= INITIAL;
+				}
+			}
+
+			text[i - shiftCount] = linkCharacter(char, linkType);
+			currentLinkType = linkType;
+		}
+
+		return shiftCount;
+	}
+
+	function linkText(text) {
+		if (text == null || text.length == 0) {
+			return text;
+		}
+		var processedText = text.split('');
+		var shiftCount = internalLinkText(processedText);
+		return processedText.slice(0, processedText.length - shiftCount).join('');
+	}
+
+	function internalUnlinkText(text, output) {
+		var outputIndex = 0;
+
+		for (var i = 0; i < text.length; i++) {
+			var char = text[i];
+
+			if (isLamAlefCharacter(char)) {
+				output[outputIndex++] = LAM_CHAR;
+				output[outputIndex++] = unlinkLamAlefCharacter(char);
+			} else {
+				output[outputIndex++] = unlinkCharacter(char);
+			}
+		}
+
+		return outputIndex;
+	}
+
+	function unlinkText(text) {
+		if (text == null || text.length == 0) {
+			return text;
+		}
+		var processedText = text.split('');
+		var output = new Array(processedText.length * 2);
+		var outputLength = internalUnlinkText(processedText, output);
+		return output.slice(0, outputLength).join('');
+	}
+
+
+</script>
+
