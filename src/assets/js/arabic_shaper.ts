@@ -1,7 +1,7 @@
 import {
   LAM_CHAR, LINK_MAP_RANGE, LINK_MAP, UNLINK_MAP_RANGE, UNLINK_MAP,
   LAMALEF_LINK_MAP_RANGE, LAMALEF_LINK_MAP, LAMALEF_UNLINK_MAP_RANGE, LAMALEF_UNLINK_MAP, CHAR_LINK_TYPE
-} from './constants'
+} from '../js/constants'
 
 function reverseString(str) {
   return [...str].reverse().join("");

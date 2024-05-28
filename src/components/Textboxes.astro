@@ -1,9 +1,11 @@
 ---
+import { Icon } from 'astro-icon/components'
+import Keywords from './Keywords.astro';
 
 ---
 
 <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-xl">
-    <div class="py-8 px-4 shadow sm:rounded-lg sm:px-10">
+    <div class="py-8 bg-blue-900 px-4 shadow sm:rounded-lg sm:px-10">
         <div class="">
             <label for="area" class="block font-medium text-3xl">اكتب هنا</label>
             <div class="mt-1 relative rounded-md shadow-sm">
@@ -21,12 +23,46 @@
         <div class="mt-6">
             <span class="block w-full rounded-md shadow-sm">
                 <button id="copyButton" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">نسخ</button>
+                <p>بعد النسخ قم باللصق في التطبيق الذي تريد إستخدام النص فيه</p>
             </span>
+        </div>
+    </div>
+
+    <div class="mt-6">
+        <div class="bg-blue-900 px-4 py-4 shadow sm:rounded-lg sm:px-10">
+            <h2 class="text-3xl font-medium">ما هذه الأداة</h2>
+            <p class="mt-2 text-md">هذه الأداة تقوم بتحويل النص العربي إلى النص الذي يمكن نسخه ولصقه في البرامج التي لا تدعم النص العربي.</p>
+            <p class="mt-2 text-md">مثلاً، يمكنك استخدام هذه الأداة لنسخ النص العربي إلى فوتوشوب، كول اوف ديوتي، ببجي وأي برنامج لايدعم اللغة العربية.</p>
+        </div>
+</div>
+<!-- a div that contains social links to the developer, discord server, github page for the project ...etc -->
+
+<div class="social-links">
+    <div class="mt-6">
+        <div class="bg-blue-900 px-4 py-4 shadow sm:rounded-lg sm:px-10">
+            <h2 class="text-3xl font-medium">روابط</h2>
+            <ul class="mt-2 text-md flex flex-wrap items-center justify-center gap-1">
+                <li class="bg-slate-950 bg-opacity-20 p-1 rounded"><a href="https://mohannadotaibi.com" class=""><Icon name="mdi:account-badge" class="inline me-1" />المطور</a></li>
+                <li class="bg-slate-950 bg-opacity-20 p-1 rounded"><a href="https://discord.gg/HxMrgzBt" class=""><Icon name="mdi:discord" class="inline me-1" />سيرفر الدسكورد</a></li>
+                <li class="bg-slate-950 bg-opacity-20 p-1 rounded"><a href="https://github.com/mo9a7i/ts_astro_arabic_reverse_typing" class=""><Icon name="mdi:github" class="inline me-1" /> المشروع على GitHub</a></li>
+                <li class="bg-slate-950 bg-opacity-20 p-1 rounded"><a href="https://github.com/mo9a7i/ts_astro_arabic_reverse_typing/issues" class=""><Icon name="mdi:help-circle" class="inline me-1" /> تبليغ عن مشكلة أو إقتراح</a></li>
+            </ul>
         </div>
     </div>
 </div>
 
-<script src="../assets/arabic_shaper.ts"></script>
+<div class="keywords">
+    <div class="mt-6">
+        <div class="bg-blue-900 px-4 py-4 shadow sm:rounded-lg sm:px-10">
+            <h2 class="text-3xl font-medium">كلمات بحث</h2>
+            <Keywords />
+            
+        </div>
+    </div>
+    
+</div>
+
+<script src="../assets/js/arabic_shaper.ts"></script>
 <script>
     // the button should copy to clipboard using clipboard api
 
