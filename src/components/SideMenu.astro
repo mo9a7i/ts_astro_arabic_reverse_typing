@@ -1,0 +1,55 @@
+---
+import * as dotenv from 'dotenv';
+import { discord_servers_invites } from '../assets/data/config.json';
+dotenv.config();
+let discord_servers = [];
+import { Client, GatewayIntentBits } from 'discord.js';
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+
+try {
+    client.login(process.env.token);
+} catch (error) {
+    console.log(error);
+}
+
+
+for(let server of discord_servers_invites) {
+    try{
+        const {guild} = await client.fetchInvite(server);
+        const server_info = {
+            id: guild.id,
+            name: guild.name,
+            description: guild.description,
+            icon: guild.iconURL(),
+            splash: guild.splashURL(),
+            banner: guild.bannerURL(),
+            invite_url: server,
+        };
+        discord_servers.push(server_info);
+       // console.log(server_info);
+
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+console.log(discord_servers);
+
+---
+
+<div class="grid grid-cols-2 gap-3">
+    {discord_servers.map((server) => (
+        <div class="bg-red-500 bg-opacity-25 rounded-2xl overflow-hidden">
+            { server.banner && <div><img class="block w-full" src={server.banner} alt={server.name} /></div> }
+            <div class="p-2 grid grid-cols-1 gap-2 justify-items-center">
+                <h1 class="text-xl font-bold">{server.name}</h1>
+                <p class="mb-2">{server.description}</p>
+                <a href={server.invite_url} class="bg-green-500 text-center w-1/4 text-white rounded-lg p-1">Join</a>
+            </div>
+           
+        </div>
+    ))}
+
+</div>
+
+<script></script>

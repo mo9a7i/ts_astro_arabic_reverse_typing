@@ -1,4 +1,16 @@
 {
+    "site_title":"أداة تحويل النصوص العربية بالمعكوس",
+    "site_description":"أداة تحويل النصوص العربية بالمعكوس للإستخدام في البرامج. تحية لمازن، العنزي، بيرل، رشاد، مطلق، بلدوزر وشلة الأنس ",
+    "site_author":"مهند العتيبي",
+    "author_twitter":"@bufai7an",
+    "site_locale":"ar_SA",
+    "site_og_image":"https://raw.githubusercontent.com/mo9a7i/ts_astro_arabic_reverse_typing/main/social.png",
+    "site_url":"https://mo9a7i.github.io/ts_astro_arabic_reverse_typing/",
+    "discord_servers_invites":[
+        "https://discord.gg/HxMrgzBt",
+        "https://discord.gg/6jy5FZyK",
+        "https://discord.gg/yUNNcnMZ"
+    ],
     "keywords":[
         "arabic",
         "arabic language",

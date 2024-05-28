@@ -1,44 +1,45 @@
 ---
-interface Props {
-	title: string;
-}
-const { title } = Astro.props;
+import { author_twitter, site_author, site_description,site_locale,site_og_image,site_title,keywords,site_url } from '../assets/data/config.json'
+
+// create a variable from keywords array to use it in meta tag as a string
+let keywords_string = keywords.join(', ')
+
 ---
 
 <!doctype html>
 <html lang="ar" dir="rtl">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="أداة تحويل النصوص العربية بالمعكوس للإستخدام في البرامج. تحية لمازن، العنزي، بيرل، رشاد، مطلق، بلدوزر وشلة الأنس " />
+		<meta name="description" content=`${site_description}` />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="author" content="مهند العتيبي" />
-		<meta name="keywords" content="arabic, arabic language,arabic language course,text,reshape,reverse,characters,photoshop,non arabic support,programs,applications,call of duty,mwz,modern warfare,modern warfare 2,modern warfare 3,mw2,mw3,mw,discord,compile,write,type,free,transform,change,translation,adobe,string,unicode,عربي,لغة عربية,دورة لغة عربية,نص,تغيير,عكس,حروف,فوتوشوب,دعم غير عربي,برامج,تطبيقات,نداء الواجب,حرب حديثة,حرب حديثة 2,حرب حديثة 3,حرب حديثة 2,حرب حديثة 3,حرب حديثة,ديسكورد,تجميع,كتابة,كتابة,مجاني,تحويل,تغيير,ترجمة,أدوبي,كول اوف ديوتي,مودرن وارفير,مودرن وارفير 2,مودرن وارفير 3,مودرن وارفير 2,مودرن وارفير 3,pubg,free fire" />
+		<meta name="author" content=`${site_author}` />
+		<meta name="keywords" content=`${keywords_string}` />
 		
 		<!-- social media description title and image  -->
-		<meta property="og:title" content="أداة تحويل النصوص العربية بالمعكوس" />
-		<meta property="og:description" content="أداة تحويل النصوص العربية بالمعكوس للإستخدام في البرامج. تحية لمازن، العنزي، بيرل، رشاد، مطلق، بلدوزر وشلة الأنس" />
-		<meta property="og:image" content="https://raw.githubusercontent.com/mo9a7i/ts_astro_arabic_reverse_typing/main/social.png" />
-		<meta property="og:url" content="https://mo9a7i.github.io/ts_astro_arabic_reverse_typing/" />
+		<meta property="og:title" content=`${site_title}` />
+		<meta property="og:description" content=`${site_description}` />
+		<meta property="og:image" content=`${site_og_image}` />
+		<meta property="og:url" content=`${site_url}` />
 		<meta property="og:type" content="website" />
-		<meta property="og:locale" content="ar_SA" />
-		<meta property="og:site_name" content="أداة تحويل النصوص العربية بالمعكوس" />
+		<meta property="og:locale" content=`${site_locale}` />
+		<meta property="og:site_name" content=`${site_title}` />
 		<meta property="og:image:type" content="image/png" />
-		<meta property="og:image:alt" content="أداة تحويل النصوص العربية بالمعكوس" />
+		<meta property="og:image:alt" content=`${site_title}` />
 
 		<!-- twitter description title and image  -->
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:site" content="@bufai7an" />
-		<meta name="twitter:creator" content="@bufai7an" />
-		<meta name="twitter:title" content="أداة تحويل النصوص العربية بالمعكوس" />
-		<meta name="twitter:description" content="أداة تحويل النصوص العربية بالمعكوس للإستخدام في البرامج. تحية لمازن، العنزي، بيرل، رشاد، مطلق، بلدوزر وشلة الأنس" />
-		<meta name="twitter:image" content="https://raw.githubusercontent.com/mo9a7i/ts_astro_arabic_reverse_typing/main/social.png" />
-		<meta name="twitter:image:alt" content="أداة تحويل النصوص العربية بالمعكوس" />
-		<meta name="twitter:image:src" content="https://raw.githubusercontent.com/mo9a7i/ts_astro_arabic_reverse_typing/main/social.png" />
-		<meta name="twitter:url" content="https://mo9a7i.github.io/ts_astro_arabic_reverse_typing/" />
-		<title>{title}</title>
+		<meta name="twitter:site" content=`${author_twitter}` />
+		<meta name="twitter:creator" content=`${author_twitter}` />
+		<meta name="twitter:title" content=`${site_title}` />
+		<meta name="twitter:description" content=`${site_description}` />
+		<meta name="twitter:image" content=`${site_og_image}` />
+		<meta name="twitter:image:alt" content=`${site_title}` />
+		<meta name="twitter:image:src" content=`${site_og_image}` />
+		<meta name="twitter:url" content=`${site_url}` />
+		<title>{site_title}</title>
 	</head>
-	<body class="text-white">
+	<body class="bg-blue-950 text-white">
 		<slot />
 	</body>
 </html>
