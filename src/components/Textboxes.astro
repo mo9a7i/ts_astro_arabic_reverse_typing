@@ -1,78 +1,115 @@
 ---
-import { Icon } from 'astro-icon/components'
 import Keywords from './Keywords.astro';
-
+import SocialLinks from './SocialLinks.astro';
+import WhatIsThis from './WhatIsThis.astro';
 ---
 
 <div class="">
-    <div class="py-8 bg-blue-900 px-4 shadow sm:rounded-lg sm:px-10">
-        <div class="">
-            <label for="area" class="block font-medium text-3xl">اكتب هنا</label>
-            <div class="mt-1 relative rounded-md shadow-sm">
-                <textarea id="area" name="area" class="text-gray-700 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" rows="4" cols="50"></textarea>
-            </div>
-        </div>
+	<div class="py-8 bg-blue-900 px-4 shadow sm:rounded-lg sm:px-10">
+		<div class="">
+			<label for="area" class="block font-medium text-3xl">اكتب هنا</label>
+			<div class="mt-1 relative rounded-md shadow-sm">
+				<textarea
+					id="area"
+					name="area"
+					class="text-gray-700 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+					rows="6"
+					cols="50"
+				></textarea>
+			</div>
+		</div>
 
-        <div class="mt-6">
-            <label for="area2" class="block font-medium text-3xl">وانسخ من هنا</label>
-            <div class="mt-1 rounded-md shadow-sm">
-                <textarea id="area2" name="area2" class="text-gray-700 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:leading-5" rows="4" cols="50" readonly></textarea>
-            </div>
-        </div>
+		<div class="mt-6">
+			<label for="area2" class="block font-medium text-3xl">وانسخ من هنا</label>
+			<div class="mt-1 rounded-md shadow-sm">
+				<textarea
+					id="area2"
+					name="area2"
+					class="text-gray-700 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:leading-5"
+					rows="6"
+					cols="50"
+					readonly
+				></textarea>
+			</div>
+		</div>
 
-        <div class="mt-6">
-            <span class="block w-full rounded-md shadow-sm">
-                <button id="copyButton" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">نسخ</button>
-                <p>بعد النسخ قم باللصق في التطبيق الذي تريد إستخدام النص فيه</p>
-            </span>
-        </div>
-    </div>
+		<div class="mt-6">
+			<span class="block w-full rounded-md shadow-sm">
+				<button id="copyButton"
+                data-copy-to-clipboard-target="area2"
+					class="w-full
+                text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br
+                focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800
+                 
+                rounded-lg
+                text-center me-2 mb-2
+                px-6 py-3.5 text-base font-medium"
+				>
+					<span id="default-message">Copy</span>
+					<span id="success-message" class="hidden inline-flex items-center">
+						<svg class="w-3 h-3 text-white me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"></path>
+						</svg>
+						Copied!
+					</span>
+				</button>
 
-    <div class="mt-6">
-        <div class="bg-blue-900 bg-opacity-50 px-4 py-4 shadow sm:rounded-lg sm:px-10">
-            <h3 class="text-3xl font-medium">ما هذه الأداة</h3>
-            <p class="mt-2 text-md">هذه الأداة تقوم بتحويل النص العربي إلى النص الذي يمكن نسخه ولصقه في البرامج التي لا تدعم النص العربي.</p>
-            <p class="mt-2 text-md">مثلاً، يمكنك استخدام هذه الأداة لنسخ النص العربي إلى فوتوشوب، كول اوف ديوتي، ببجي وأي برنامج لايدعم اللغة العربية.</p>
-        </div>
-</div>
-<!-- a div that contains social links to the developer, discord server, github page for the project ...etc -->
-
-<div class="social-links">
-    <div class="mt-6">
-        <div class="bg-blue-900 bg-opacity-50 px-4 py-4 shadow sm:rounded-lg sm:px-10">
-            <h3 class="text-3xl font-medium">روابط</h3>
-            <ul class="mt-2 text-md flex flex-wrap items-center  gap-1">
-                <li class="bg-slate-950 bg-opacity-20 p-1 rounded"><a href="https://mohannadotaibi.com" class=""><Icon name="mdi:account-badge" class="inline me-1" />المطور</a></li>
-                <li class="bg-slate-950 bg-opacity-20 p-1 rounded"><a href="https://discord.gg/HxMrgzBt" class=""><Icon name="mdi:discord" class="inline me-1" />سيرفر الدسكورد</a></li>
-                <li class="bg-slate-950 bg-opacity-20 p-1 rounded"><a href="https://github.com/mo9a7i/ts_astro_arabic_reverse_typing" class=""><Icon name="mdi:github" class="inline me-1" /> المشروع على GitHub</a></li>
-                <li class="bg-slate-950 bg-opacity-20 p-1 rounded"><a href="https://github.com/mo9a7i/ts_astro_arabic_reverse_typing/issues" class=""><Icon name="mdi:help-circle" class="inline me-1" /> تبليغ عن مشكلة أو إقتراح</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<div class="keywords">
-    <div class="mt-6">
-        <div class="bg-blue-900 bg-opacity-50 px-4 py-4 shadow sm:rounded-lg sm:px-10">
-            <h3 class="text-3xl font-medium">كلمات بحث</h3>
-            <Keywords />
             
-        </div>
-    </div>
-    
+            
+
+				<p>بعد النسخ قم باللصق في التطبيق الذي تريد إستخدام النص فيه</p>
+			</span>
+		</div>
+	</div>
+
+	<WhatIsThis />
+	<!-- a div that contains social links to the developer, discord server, github page for the project ...etc -->
+
+	<SocialLinks />
+
+	<Keywords />
+
+	<script src="../assets/js/arabic_shaper.ts"></script>
+    <script>
+        import { CopyClipboard } from 'flowbite'
+        import type { CopyClipboardOptions, CopyClipboardInterface } from 'flowbite';
+        import type { InstanceOptions } from 'flowbite';
+        
+        const $triggerEl: HTMLElement = document.querySelector('#copyButton');
+        const $targetEl: HTMLInputElement = document.querySelector('#area2');
+        const $defaultMessage = document.getElementById('default-message');
+        const $successMessage = document.getElementById('success-message');
+
+        const options: CopyClipboardOptions = {
+            contentType: 'input',
+            htmlEntities: false, // infinite
+            onCopy: () => {
+                $defaultMessage.classList.add('hidden');
+                $successMessage.classList.remove('hidden');
+                console.log('text copied successfully!');
+
+                setTimeout(() => {
+                    $defaultMessage.classList.remove('hidden');
+                    $successMessage.classList.add('hidden');
+                }, 2000);
+
+            }
+        };
+
+        const instanceOptions: InstanceOptions = {
+            id: 'copy-clipboard-example',
+            override: true
+        };
+
+        const clipboard: CopyClipboardInterface = new CopyClipboard(
+            $triggerEl,
+            $targetEl,
+            options,
+            instanceOptions
+        );
+
+        clipboard.copy();
+
+    </script>
+
 </div>
-
-<script src="../assets/js/arabic_shaper.ts"></script>
-<script>
-    // the button should copy to clipboard using clipboard api
-
-    const button = document.querySelector("#copyButton") as HTMLButtonElement;
-    button.addEventListener("click", async () => {
-        const area2 = document.querySelector("#area2") as HTMLTextAreaElement;
-        try {
-            await navigator.clipboard.writeText(area2.value);
-        } catch (err) {
-            console.error("Failed to copy text: ", err);
-        }
-    });
-</script>

@@ -17,6 +17,7 @@
     "astro-icon": "^1.1.0",
     "discord.js": "^14.15.2",
     "dotenv": "^16.4.5",
+    "flowbite": "^2.3.0",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5"
   },

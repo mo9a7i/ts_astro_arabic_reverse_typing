@@ -1,10 +1,22 @@
 ---
-import {keywords} from '../assets/data/config.json'
+import { keywords } from '../assets/data/config.json';
 ---
-<!-- keywords div, that are styled like hashtags for SEO purposes  -->
 
-<ul class="mt-2 text-md flex flex-wrap items-center  gap-1">
-    {keywords.map(keyword => (
-        <li class="bg-slate-950 bg-opacity-20 p-1 rounded"><span class="">{keyword}</span></li>
-    ))}
-</ul>
+<!-- keywords div, that are styled like hashtags for SEO purposes  -->
+<div class="keywords">
+	<div class="mt-6">
+		<div class="bg-blue-900 bg-opacity-50 px-4 py-4 shadow sm:rounded-lg sm:px-10">
+			<h3 class="text-3xl font-medium">كلمات بحث</h3>
+
+			<ul class="mt-2 text-md flex flex-wrap items-center gap-1">
+				{
+					keywords.map((keyword) => (
+						<li class="bg-slate-950 bg-opacity-20 p-1 rounded">
+							<span class="">{keyword}</span>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+</div>
