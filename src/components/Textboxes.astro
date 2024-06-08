@@ -1,115 +1,116 @@
 ---
+import GradientBorderCard from './GradientBorderCard.astro';
 import Keywords from './Keywords.astro';
 import SocialLinks from './SocialLinks.astro';
 import WhatIsThis from './WhatIsThis.astro';
 ---
 
 <div class="">
-	<div class="py-8 bg-blue-900 px-4 shadow sm:rounded-lg sm:px-10">
-		<div class="">
-			<label for="area" class="block font-medium text-3xl">اكتب هنا</label>
-			<div class="mt-1 relative rounded-md shadow-sm">
-				<textarea
-					id="area"
-					name="area"
-					class="text-gray-700 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-					rows="6"
-					cols="50"
-				></textarea>
+	
+	<div class="mb-12">
+		<GradientBorderCard>
+			<div class="">
+				<label for="area" class="block font-medium text-3xl">اكتب هنا</label>
+				<div class="mt-1 relative rounded-md shadow-sm">
+					<textarea
+						id="area"
+						name="area"
+						class="text-gray-700 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+						rows="6"
+						cols="50"
+					>
+					</textarea>
+				</div>
 			</div>
-		</div>
 
-		<div class="mt-6">
-			<label for="area2" class="block font-medium text-3xl">وانسخ من هنا</label>
-			<div class="mt-1 rounded-md shadow-sm">
-				<textarea
-					id="area2"
-					name="area2"
-					class="text-gray-700 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:leading-5"
-					rows="6"
-					cols="50"
-					readonly
-				></textarea>
+			<div class="mt-6">
+				<label for="area2" class="block font-medium text-3xl">وانسخ من هنا</label>
+				<div class="mt-1 rounded-md shadow-sm">
+					<textarea
+						id="area2"
+						name="area2"
+						class="text-gray-700 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:leading-5"
+						rows="6"
+						cols="50"
+						readonly
+					>
+					</textarea>
+				</div>
 			</div>
-		</div>
 
-		<div class="mt-6">
-			<span class="block w-full rounded-md shadow-sm">
-				<button id="copyButton"
-                data-copy-to-clipboard-target="area2"
-					class="w-full
-                text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br
-                focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800
-                 
-                rounded-lg
-                text-center me-2 mb-2
-                px-6 py-3.5 text-base font-medium"
-				>
-					<span id="default-message">Copy</span>
-					<span id="success-message" class="hidden inline-flex items-center">
-						<svg class="w-3 h-3 text-white me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"></path>
-						</svg>
-						Copied!
-					</span>
-				</button>
+			<div class="mt-6">
+				<span class="block w-full rounded-md shadow-sm">
+					<button id="copyButton" data-copy-to-clipboard-target="area2" type="button" dir="ltr" 
+					class=" w-full text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+						<span id="default-message">Copy</span>
+						<span id="success-message" class="hidden inline-flex items-center">
+							<svg class="w-3 h-3 text-white me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"></path>
+							</svg>
+							Copied!
+						</span>
+					</button>
 
-            
-            
-
-				<p>بعد النسخ قم باللصق في التطبيق الذي تريد إستخدام النص فيه</p>
-			</span>
-		</div>
+					<p>بعد النسخ قم باللصق في التطبيق الذي تريد إستخدام النص فيه</p>
+				</span>
+			</div>
+		</GradientBorderCard>
+	</div>
+			
+	<div class="mb-12">
+		<GradientBorderCard>
+			<WhatIsThis />
+		</GradientBorderCard>
 	</div>
 
-	<WhatIsThis />
+	<div class="mb-12">
+		<GradientBorderCard>
+			<SocialLinks />
+		</GradientBorderCard>
+	</div>
+
+
+
+	
+
+
+			
+	
 	<!-- a div that contains social links to the developer, discord server, github page for the project ...etc -->
 
-	<SocialLinks />
-
-	<Keywords />
-
 	<script src="../assets/js/arabic_shaper.ts"></script>
-    <script>
-        import { CopyClipboard } from 'flowbite'
-        import type { CopyClipboardOptions, CopyClipboardInterface } from 'flowbite';
-        import type { InstanceOptions } from 'flowbite';
-        
-        const $triggerEl: HTMLElement = document.querySelector('#copyButton');
-        const $targetEl: HTMLInputElement = document.querySelector('#area2');
-        const $defaultMessage = document.getElementById('default-message');
-        const $successMessage = document.getElementById('success-message');
+	<script>
+		import { CopyClipboard } from 'flowbite';
+		import type { CopyClipboardOptions, CopyClipboardInterface } from 'flowbite';
+		import type { InstanceOptions } from 'flowbite';
 
-        const options: CopyClipboardOptions = {
-            contentType: 'input',
-            htmlEntities: false, // infinite
-            onCopy: () => {
-                $defaultMessage.classList.add('hidden');
-                $successMessage.classList.remove('hidden');
-                console.log('text copied successfully!');
+		const $triggerEl: HTMLElement = document.querySelector('#copyButton');
+		const $targetEl: HTMLInputElement = document.querySelector('#area2');
+		const $defaultMessage = document.getElementById('default-message');
+		const $successMessage = document.getElementById('success-message');
 
-                setTimeout(() => {
-                    $defaultMessage.classList.remove('hidden');
-                    $successMessage.classList.add('hidden');
-                }, 2000);
+		const options: CopyClipboardOptions = {
+			contentType: 'input',
+			htmlEntities: false, // infinite
+			onCopy: () => {
+				$defaultMessage.classList.add('hidden');
+				$successMessage.classList.remove('hidden');
+				console.log('text copied successfully!');
 
-            }
-        };
+				setTimeout(() => {
+					$defaultMessage.classList.remove('hidden');
+					$successMessage.classList.add('hidden');
+				}, 2000);
+			},
+		};
 
-        const instanceOptions: InstanceOptions = {
-            id: 'copy-clipboard-example',
-            override: true
-        };
+		const instanceOptions: InstanceOptions = {
+			id: 'copy-clipboard-example',
+			override: true,
+		};
 
-        const clipboard: CopyClipboardInterface = new CopyClipboard(
-            $triggerEl,
-            $targetEl,
-            options,
-            instanceOptions
-        );
+		const clipboard: CopyClipboardInterface = new CopyClipboard($triggerEl, $targetEl, options, instanceOptions);
 
-        clipboard.copy();
-
-    </script>
-
+		clipboard.copy();
+	</script>
 </div>
