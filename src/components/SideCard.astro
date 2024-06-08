@@ -1,0 +1,16 @@
+---
+// props for video id
+const { info } = Astro.props;
+console.log(info);
+---
+
+<div class="bg-red-500 bg-opacity-25 rounded-2xl overflow-hidden">
+    { info.thumbnail && <div><img class="block w-full" src={info.thumbnail} alt={info.title} /></div> }
+    <div class="p-2 grid grid-cols-1 gap-2 justify-items-center">
+        <h3 class="text-xl font-bold">{info.title}</h3>
+        
+        <a href={info.url} class="bg-green-500 text-center w-1/4 text-white rounded-lg p-1">{info.link_text}</a>
+    </div>
+   
+</div>
+

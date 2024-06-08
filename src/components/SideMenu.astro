@@ -1,6 +1,7 @@
 ---
 import * as dotenv from 'dotenv';
-import { discord_servers_invites } from '../assets/data/config.json';
+import SideCard from './SideCard.astro';
+import { discord_servers_invites, youtube_videos } from '../assets/data/config.json';
 dotenv.config();
 let discord_servers = [];
 import { Client, GatewayIntentBits } from 'discord.js';
@@ -37,19 +38,43 @@ console.log(discord_servers);
 
 ---
 
-<div class="grid grid-cols-2 gap-3">
-    {discord_servers.map((server) => (
-        <div class="bg-red-500 bg-opacity-25 rounded-2xl overflow-hidden">
-            { server.banner && <div><img class="block w-full" src={server.banner} alt={server.name} /></div> }
-            <div class="p-2 grid grid-cols-1 gap-2 justify-items-center">
-                <h3 class="text-xl font-bold">{server.name}</h3>
-                <p class="mb-2">{server.description}</p>
-                <a href={server.invite_url} class="bg-green-500 text-center w-1/4 text-white rounded-lg p-1">Join</a>
-            </div>
-           
-        </div>
-    ))}
+<div>
 
+    <div class="mb-10">
+        <h3 class="text-2xl font-bold py-2">فديوات مفيدة</h3>
+        <div class="grid grid-cols-2 gap-3">
+        
+            {youtube_videos.map((video) => (
+               <SideCard info={{
+                    'thumbnail': video.thumbnail,
+                    'title': video.title,
+                    'description': null,
+                    'url': video.url,
+                    'link_text': 'شاهد',
+               }} />
+            ))}
+        </div>
+
+    </div>
+
+    <div class="mb-10">
+        <h3 class="text-2xl font-bold py-2">سيرفرات ديسكورد صديقة</h3>
+        <div class="grid grid-cols-2 gap-3">
+        
+            {discord_servers.map((server) => (
+                <SideCard info={{
+                    'thumbnail':  server.banner,
+                    'title': server.name,
+                    'description': null,
+                    'url': server.invite_url,
+                    'link_text': 'انضم',
+                }} />
+            ))}
+        </div>
+    </div>
+
+    
+    
 </div>
 
 <script></script>

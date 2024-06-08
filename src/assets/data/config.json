@@ -7,9 +7,27 @@
     "site_og_image":"https://raw.githubusercontent.com/mo9a7i/ts_astro_arabic_reverse_typing/main/social.png",
     "site_url":"https://mo9a7i.github.io/ts_astro_arabic_reverse_typing/",
     "discord_servers_invites":[
-        "https://discord.gg/HxMrgzBt",
-        "https://discord.gg/6jy5FZyK",
-        "https://discord.gg/yUNNcnMZ"
+        "https://discord.gg/middle-east-gamer-853290276063805440",
+        "https://discord.gg/Nw99edMU59",
+        "https://discord.gg/onehit-tm-275801207031726082"
+    ],
+    "youtube_videos":[
+        {
+            "title":"زومبي كود 20 - قلتش القبر والتدبيل (ما تخسر ولا شي) 🔥🤑💰",
+            "url":"https://www.youtube.com/watch?v=h_Urv97BK6k",
+            "thumbnail":"https://img.youtube.com/vi/h_Urv97BK6k/hqdefault.jpg"
+        },
+        {
+            "title":"شرح تحميل واستخدام AutoHotKey: إعداد سكريبت التحرك في الألعاب بالعربية 😈",
+            "url":"https://www.youtube.com/watch?v=Lh0NPxN57_g",
+            "thumbnail":"https://img.youtube.com/vi/Lh0NPxN57_g/hqdefault.jpg"
+        },
+        {
+            "title":"إلحق بسرعة: قلتش تلفيل الشخصية والأسلحة XP Rank, Battle Pass, Weapon في MW3 | وانت نايم🪙",
+            "url":"https://www.youtube.com/watch?v=BXeKfHohpXg",
+            "thumbnail":"https://img.youtube.com/vi/BXeKfHohpXg/hqdefault.jpg"
+        }
+
     ],
     "keywords":[
         "arabic",
