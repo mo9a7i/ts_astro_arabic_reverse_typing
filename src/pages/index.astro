@@ -4,9 +4,10 @@ import Textboxes from '../components/Textboxes.astro';
 import Keywords from '../components/Keywords.astro';
 import SideMenu from '../components/SideMenu.astro';
 import Header from '../components/Header.astro';
+import {site_title} from '../assets/data/config.json'
 ---
 
-<Layout title="أداة الكتابة بالعربي">
+<Layout title={site_title}>
 	<div class="container mx-auto ">
 		<Header />
 
