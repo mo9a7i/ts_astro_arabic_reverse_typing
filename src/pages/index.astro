@@ -8,25 +8,27 @@ import {site_title} from '../assets/data/config.json'
 ---
 
 <Layout title={site_title}>
-	<div class="container mx-auto ">
+	<div class="lg:container lg:mx-auto">
 		<Header />
 
-		<div class="flex flex-row flexwrap">
-			
-			<main class="flex flex-col  w-2/3 p-6">
-				<MainContent />
-			</main>
-
-			<aside class="  w-1/3  p-6">
-				<SideMenu />
-			</aside>
-
-		</div>
+		<main class="">
+			<MainContent />
+		</main>
 
 		<footer class="py-6">
 			<Keywords />
 			
 		</footer>
+
+		<div id="loading" class="fixed inset-0 bg-indigo-950 z-50 flex items-center justify-center">
+			<div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-purple-500"></div>
+		</div>
+
+		<script>
+			window.addEventListener('load', () => {
+				document.getElementById('loading')?.classList.add('hidden');
+			});
+		</script>
 
 	</div>
 	

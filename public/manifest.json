@@ -1,0 +1,26 @@
+{
+  "name": "أداة تحويل النصوص العربية بالمعكوس",
+  "short_name": "تحويل النصوص",
+  "description": "أداة تحويل النصوص العربية للإستخدام في البرامج التي لا تدعم اللغة العربية",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1e1b4b",
+  "theme_color": "#1e1b4b",
+  "icons": [
+    {
+      "src": "/favicons/favicon-16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicons/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicons/favicon-48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    }
+  ]
+} 

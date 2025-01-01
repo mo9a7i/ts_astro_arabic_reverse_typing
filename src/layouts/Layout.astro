@@ -11,8 +11,7 @@ let keywords_string = keywords.join(', ')
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content=`${site_description}` />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<meta name="author" content=`${site_author}` />
 		<meta name="keywords" content=`${keywords_string}` />
 		<meta name="google-site-verification" content="kixqijgikH19g8QC35ZVXVbASkKUrtxaU6y0kfCGVTY" />
@@ -47,12 +46,37 @@ let keywords_string = keywords.join(', ')
 		<meta name="twitter:image:alt" content=`${site_title}` />
 		<meta name="twitter:image:src" content=`${site_og_image}` />
 		<meta name="twitter:url" content=`${site_url}` />
-		<script defer src="https://umami.monitoring.6d.com.sa/script.js" data-website-id="928e4b1c-5efa-49e9-9c1c-5da17e920727"></script>
-		<script defer data-domain="arabic-keyboard.mo9a7i.com" src="https://plausible.monitoring.6d.com.sa/js/script.js"></script>
 
 		<title>{site_title}</title>
+
+		<meta name="robots" content="index, follow">
+		<meta name="googlebot" content="index, follow">
+		<link rel="canonical" href={site_url} />
+
+		<script>
+			if ('serviceWorker' in navigator) {
+				navigator.serviceWorker.register('/service-worker.js');
+			}
+		</script>
+
+		<script>
+			window.addEventListener('error', (event) => {
+				console.error('Runtime error:', event.error);
+				// You could send this to your analytics
+			});
+			
+			window.addEventListener('unhandledrejection', (event) => {
+				console.error('Unhandled promise rejection:', event.reason);
+			});
+		</script>
+
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://umami.monitoring.6d.com.sa https://plausible.monitoring.6d.com.sa; style-src 'self' 'unsafe-inline'; img-src 'self' https://www.svgrepo.com https://img.youtube.com https://raw.githubusercontent.com;">
+		<meta http-equiv="X-Content-Type-Options" content="nosniff">
+		<meta http-equiv="X-Frame-Options" content="DENY">
+		<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 	</head>
 	<body class="bg-indigo-950 text-white">
+		<div class="h-[5px] bg-gradient-to-r from-purple-500 to-pink-500 z-50"></div>
 		<slot />
 		
 	</body>

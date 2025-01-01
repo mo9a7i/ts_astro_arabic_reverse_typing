@@ -172,7 +172,7 @@ function unlinkText(text) {
   return new_text_array.slice(0, linked_text).join("");
 }
 
-function run(text) {
+export function run(text) {
   if (text) {
     text = linkText(text);
   }

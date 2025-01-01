@@ -7,5 +7,5 @@ import icon from "astro-icon";
 export default defineConfig({
   integrations: [tailwind(), icon()],
   site: 'https://arabic-keyboard.mo9a7i.com',
-  base: '/'
+  base: '/',
 });
