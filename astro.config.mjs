@@ -8,4 +8,12 @@ export default defineConfig({
   integrations: [tailwind(), icon()],
   site: 'https://arabic-keyboard.mo9a7i.com',
   base: '/',
+  output: 'static',
+  serviceWorker: {
+    register: true,
+    scope: '/'
+  },
+  build: {
+    assets: 'assets'
+  }
 });

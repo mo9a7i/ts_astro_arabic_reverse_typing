@@ -54,8 +54,13 @@ let keywords_string = keywords.join(', ')
 		<link rel="canonical" href={site_url} />
 
 		<script>
-			if ('serviceWorker' in navigator) {
-				navigator.serviceWorker.register('/service-worker.js');
+			if ('serviceWorker' in navigator && window.location.hostname !== 'localhost') {
+				window.addEventListener('load', () => {
+					navigator.serviceWorker.register('/service-worker.js')
+						.catch((error) => {
+							console.error('Service Worker registration failed:', error);
+						});
+				});
 			}
 		</script>
 
